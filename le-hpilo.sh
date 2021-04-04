@@ -50,3 +50,5 @@ ilo_cert=$(cat .lego/certificates/$ILO_DOMAIN.crt | awk  '{gsub(" ","\\n")};1'|s
 
 # Install the certificate and reset iLO4
 curl -sS -k -X POST -H "Content-Type: application/json" -d "{ \"Action\": \"ImportCertificate\", \"Certificate\": \"$(echo $ilo_cert)\" }" -u $ILO_USERNAME:$ILO_PASSWORD https://$ILO_DOMAIN/redfish/v1/Managers/1/SecurityService/HttpsCert/
+
+fi
