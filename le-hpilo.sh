@@ -2,6 +2,11 @@
 # Fix for newlines disappearing
 IFS=
 set -e
+
+if ! [ -z ${DEBUG+x} ]; then
+	set -x
+fi
+
 if [ -z ${ILO_USERNAME+x} ]; then
 	echo "ILO_USERNAME not set!"
 	exit 1
