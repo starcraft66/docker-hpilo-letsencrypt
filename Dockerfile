@@ -1,9 +1,18 @@
-FROM alpine:3
+FROM debian:bookworm-slim
 
-RUN apk add --no-cache ca-certificates bash coreutils lego openssl jq curl
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    coreutils \
+    lego \
+    openssl \
+    jq \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 ADD le-hpilo.sh /
 
 VOLUME /.lego
+
+WORKDIR /
 
 ENTRYPOINT ["/le-hpilo.sh"]
